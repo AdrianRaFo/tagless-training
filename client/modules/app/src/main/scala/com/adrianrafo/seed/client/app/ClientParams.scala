@@ -11,9 +11,14 @@ object ClientParams {
     new scopt.OptionParser[ParamsConfig](name) {
 
       opt[String]("name")
-        .required()
+        .optional()
         .action((value, config) => config.copy(request = value))
         .text("The name for the request")
+
+      opt[String]("host")
+        .optional()
+        .action((value, config) => config.copy(request = value))
+        .text("The host of the server")
 
     }
 

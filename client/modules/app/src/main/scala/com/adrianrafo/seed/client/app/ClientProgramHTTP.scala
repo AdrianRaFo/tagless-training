@@ -14,7 +14,7 @@ class ClientProgramHTTP[F[_]: ConcurrentEffect: ContextShift] extends ClientBoot
   def clientProgram(config: SeedClientConfig)(implicit L: Logger[F]): F[ExitCode] = {
     for {
       baseUrl <- Effect[F].fromEither(
-        Uri.requestTarget(s"${config.params.host}:${config.client.port}"))
+        Uri.requestTarget(s"http://${config.params.host}:${config.client.port}"))
       (peopleClient, close) <- peopleServiceClientHTTP(baseUrl).allocated
       result                <- peopleClient.getPerson(config.params.request)
       _                     <- close

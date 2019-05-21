@@ -73,8 +73,8 @@ lazy val allClientModulesDeps: Seq[ClasspathDependency] =
   allClientModules.map(ClasspathDependency(_, None))
 
 lazy val client = project in file("client") aggregate (allClientModules: _*) dependsOn (allClientModulesDeps: _*)
-addCommandAlias("runClientRPC", "client_app/runMain com.adrianrafo.seed.client.app.ClientAppRPC")
-addCommandAlias("runClientHTTP", "client_app/runMain com.adrianrafo.seed.client.app.ClientAppHTTP")
+addCommandAlias("runRPCClient", "client_app/runMain com.adrianrafo.seed.client.app.ClientAppRPC")
+addCommandAlias("runHTTPClient", "client_app/runMain com.adrianrafo.seed.client.app.ClientAppHTTP")
 
 /////////////////////////
 ////       Root      ////
