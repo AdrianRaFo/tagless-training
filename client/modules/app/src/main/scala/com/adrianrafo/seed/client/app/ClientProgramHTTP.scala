@@ -15,8 +15,8 @@ class ClientProgramHTTP[F[_]: ConcurrentEffect: ContextShift] extends ClientBoot
     for {
       baseUrl <- Effect[F].fromEither(
         Uri.requestTarget(s"http://${config.params.host}:${config.client.port}"))
-      (peopleClient, close) <- peopleServiceClientHTTP(baseUrl).allocated
-      result                <- peopleClient.getPerson(config.params.request)
+      (peopleClient, close) <- processServiceHTTP(baseUrl).allocated
+      result                <- peopleClient.getPersonProcess(config.params.request)
       _                     <- close
     } yield result.fold(_ => ExitCode.Error, _ => ExitCode.Success)
   }
