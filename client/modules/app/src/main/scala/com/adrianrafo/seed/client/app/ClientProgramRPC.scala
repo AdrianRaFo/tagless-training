@@ -10,7 +10,7 @@ class ClientProgramRPC[F[_]: ConcurrentEffect: ContextShift] extends ClientBoot[
 
   def clientProgram(config: SeedClientConfig)(implicit L: Logger[F]): F[ExitCode] = {
     for {
-      (peopleClient, close) <- processServiceRPC(config.params.host, config.client.port).allocated
+      (peopleClient, close) <- processServiceRPC(config.params.host, config.client.rpcPort).allocated
       result                <- peopleClient.getPersonProcess(config.params.request)
       _                     <- close
     } yield result.fold(_ => ExitCode.Error, _ => ExitCode.Success)

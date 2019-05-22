@@ -3,6 +3,6 @@ package common
 
 object models {
 
-  case class SeedServerConfig(name: String, port: Int)
+  case class SeedServerConfig(name: String, httpPort: Int, rpcPort : Int)
 
 }

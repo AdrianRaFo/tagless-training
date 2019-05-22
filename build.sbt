@@ -46,8 +46,7 @@ lazy val allServerModulesDeps: Seq[ClasspathDependency] =
   allServerModules.map(ClasspathDependency(_, None))
 
 lazy val server = project in file("server") aggregate (allServerModules: _*) dependsOn (allServerModulesDeps: _*)
-addCommandAlias("runRPCServer", "server_app/runMain com.adrianrafo.seed.server.app.ServerAppRPC")
-addCommandAlias("runHTTPServer", "server_app/runMain com.adrianrafo.seed.server.app.ServerAppHTTP")
+addCommandAlias("runServer", "server_app/runMain com.adrianrafo.seed.server.app.ServerApp")
 
 //////////////////////////
 ////  Client Modules  ////

@@ -3,7 +3,7 @@ package common
 
 object models {
 
-  case class ClientConfig(name: String, port: Int)
+  case class ClientConfig(name: String, httpPort: Int, rpcPort : Int)
 
   case class ParamsConfig(request: String, host: String)
 

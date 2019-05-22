@@ -7,7 +7,7 @@ import com.adrianrafo.seed.server.protocol._
 import io.chrisdavenport.log4cats.Logger
 import shapeless.{:+:, CNil, Coproduct}
 
-class PeopleServiceHandler[F[_]: Sync](implicit L: Logger[F]) extends PeopleService[F] {
+class PeopleServiceHandler[F[_]: Sync](mode: String)(implicit L: Logger[F]) extends PeopleService[F] {
 
   val serviceName = "PeopleService"
 
@@ -31,7 +31,7 @@ class PeopleServiceHandler[F[_]: Sync](implicit L: Logger[F]) extends PeopleServ
           Coproduct[PersonResult](DuplicatedPersonError(s"Person ${request.name} duplicated"))
       }
 
-    L.info(s"$serviceName - Request: $request").as(PeopleResponse(findPerson))
+    L.info(s"$serviceName:$mode - Request: $request").as(PeopleResponse(findPerson))
   }
 
 }
