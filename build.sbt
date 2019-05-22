@@ -10,9 +10,7 @@ lazy val config = project in file("shared/modules/config") settings configSettin
 ////     Shared     ////
 ////////////////////////
 
-lazy val allSharedModules: Seq[ProjectReference] = Seq(
-  config
-)
+lazy val allSharedModules: Seq[ProjectReference] = Seq(config)
 
 lazy val allSharedModulesDeps: Seq[ClasspathDependency] =
   allSharedModules.map(ClasspathDependency(_, None))
